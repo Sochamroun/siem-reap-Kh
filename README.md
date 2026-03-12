@@ -10,3 +10,6 @@ chmod +x run.sh
 
 # Run IT 
 ./run.sh
+
+# link download termux 
+https://github.com/termux/termux-app/tags
