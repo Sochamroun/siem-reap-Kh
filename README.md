@@ -1,7 +1,12 @@
 # siem-reap-Kh
-Termux kh
+# Clone GitHub repo
+git clone https://github.com/username/realme.dm.git
 
-ដើម្បី run file ដែលមាន run.sh បានយើងត្រូវ
+# Change into directory
+cd realme.dm
+
+# Make run.sh executable
 chmod +x run.sh
-ហើយ
+
+# Run it
 ./run.sh
