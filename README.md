@@ -2,11 +2,11 @@
 # Clone GitHub repo
 git clone https://github.com/username/realme.dm.git
 
-# Change into directory
-cd realme.dm
+# CMD SHOW ALL FILE IN TERMUX 
+ls 
 
 # Make run.sh executable
 chmod +x run.sh
 
-# Run it
+# Run IT 
 ./run.sh
