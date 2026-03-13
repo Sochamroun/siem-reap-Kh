@@ -606,6 +606,10 @@ ls
 ```
 ## ដើម្បី select folder 
 ### cd ~/ name folder 
+```bash
+./start.sh
+```
+---
 ## ចំណុចសំខាន់ដែលត្រូវដឹង
 ```bash
 termux-setup-storage
