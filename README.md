@@ -254,7 +254,7 @@ cloudflared tunnel --url http://localhost:8080
 
 ---
 
-### run.sh (nano run.sh)
+### ⚙️ run.sh (nano run.sh)
 ```bash
 #!/data/data/com.termux/files/usr/bin/bash
 
@@ -335,6 +335,135 @@ done
 ```bash
 ./video.sh
 ```
+---
+
+## 📣 song.sh (nano song.sh)
+```bash
+#!/bin/bash
+
+DOWNLOAD_FOLDER="/storage/emulated/0/Music"
+mkdir -p "$DOWNLOAD_FOLDER"
+
+echo "🎵 Multi Audio Downloader (press CTRL+C to exit)"
+
+while true; do
+    read -p "Enter video URL: " url
+
+    if [[ -z "$url" ]]; then
+        echo "No URL entered, try again..."
+        continue
+    fi
+
+    # Output template
+    out_template="$DOWNLOAD_FOLDER/%(title)s.%(ext)s"
+
+    # Download audio in background as MP3
+    echo "⬇️ Downloading audio (MP3) from $url in background..."
+    yt-dlp -x \
+           --audio-format mp3 \
+           --audio-quality 256k \
+           --embed-thumbnail \
+           --add-metadata \
+           -o "$out_template" "$url" &
+
+    echo "🎧 Audio download started! Saved to Music folder."
+    echo "You can enter another URL while the previous download is run>
+done
+```
+---
+
+## chmod +x song.sh
+```bash
+./song.sh
+```
+---
+
+## 🤖 bot.js (nano bot.js)
+```bash
+const mineflayer = require('mineflayer')
+
+const HOST = '127.0.0.1'
+const PORT = 25565
+const VERSION = '1.12.2'
+const BOT_COUNT = 10
+const STAY_TIME = 10 * 60 * 1000
+
+const names = [
+  "Dream","Technoblade","Illumina","Fruitberries","Sapnap",
+  "GeorgeNotFound","TommyInnit","Ranboo","Tubbo","Purpled",
+  "Quig","PeteZahHutt","CaptainSparklez","Grian","MumboJumbo",
+  "DanTDM","Skeppy","BadBoyHalo","TapL","Krinios"
+]
+
+function randomName() {
+  const base = names[Math.floor(Math.random()*names.length)]
+  const num = Math.floor(Math.random()*9999)
+  return base + num
+}
+
+function createBot() {
+
+  const bot = mineflayer.createBot({
+    host: HOST,
+    port: PORT,
+    username: randomName(),
+    version: VERSION
+  })
+
+  bot.on('spawn', () => {
+    console.log(bot.username + " joined")
+
+    // random walk every 2 seconds
+    const walk = setInterval(() => {
+
+      const controls = ['forward','back','left','right']
+      const c = controls[Math.floor(Math.random()*controls.length)]
+
+      bot.setControlState(c,true)
+
+      setTimeout(()=>{
+        bot.setControlState(c,false)
+      },1000)
+
+    },2000)
+
+    // leave after 10 minutes
+    setTimeout(()=>{
+      clearInterval(walk)
+      bot.quit()
+    }, STAY_TIME)
+
+  })
+
+  bot.on('end', () => {
+    console.log(bot.username + " reconnecting...")
+    setTimeout(createBot,5000)
+  })
+
+  bot.on('error', err => console.log(err))
+}
+
+for(let i=0;i<BOT_COUNT;i++){
+  setTimeout(createBot, i*500)
+}
+```
+---
+
+## node bot.js (ដើម្បី run bot )
+---
+## need init and mineflayer
+```bash
+pkg install nodejs git
+npm init -y
+npm install mineflayer
+```
+---
+
+## ចំណុចសំខាន់ដែលត្រូវដឹង
+```bash
+termux-setup-storage
+```
+### ដើម្បីអនុញ្ញាត storage និងដើម្បីទាញយក video និង song
 ---
 
 
