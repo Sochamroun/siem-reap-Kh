@@ -581,8 +581,12 @@ echo ""
 echo "Start server:"
 echo "./start.sh"
 ```
----
 
+## chmod +x server.sh
+```bash
+./server.sh
+```
+---
 ## ចំណុចសំខាន់ដែលត្រូវដឹង
 ```bash
 termux-setup-storage
