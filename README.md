@@ -381,9 +381,13 @@ done
 ## 🤖 bot.js (nano bot.js)
 ```bash
 const mineflayer = require('mineflayer')
+const readline = require('readline')
 
-const HOST = '127.0.0.1'
-const PORT = 25565
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
+
 const VERSION = '1.12.2'
 const BOT_COUNT = 10
 const STAY_TIME = 10 * 60 * 1000
@@ -401,51 +405,60 @@ function randomName() {
   return base + num
 }
 
-function createBot() {
+rl.question("Enter Server IP: ", (HOST) => {
 
-  const bot = mineflayer.createBot({
-    host: HOST,
-    port: PORT,
-    username: randomName(),
-    version: VERSION
+  rl.question("Enter Port (default 25565): ", (PORT) => {
+
+    if(PORT === "") PORT = 25565
+
+    function createBot() {
+
+      const bot = mineflayer.createBot({
+        host: HOST,
+        port: parseInt(PORT),
+        username: randomName(),
+        version: VERSION
+      })
+
+      bot.on('spawn', () => {
+        console.log(bot.username + " joined")
+
+        const walk = setInterval(() => {
+
+          const controls = ['forward','back','left','right']
+          const c = controls[Math.floor(Math.random()*controls.length)]
+
+          bot.setControlState(c,true)
+
+          setTimeout(()=>{
+            bot.setControlState(c,false)
+          },1000)
+
+        },2000)
+
+        setTimeout(()=>{
+          clearInterval(walk)
+          bot.quit()
+        }, STAY_TIME)
+
+      })
+
+      bot.on('end', () => {
+        console.log(bot.username + " reconnecting...")
+        setTimeout(createBot,5000)
+      })
+
+      bot.on('error', err => console.log(err))
+    }
+
+    for(let i=0;i<BOT_COUNT;i++){
+      setTimeout(createBot, i*500)
+    }
+
   })
 
-  bot.on('spawn', () => {
-    console.log(bot.username + " joined")
+})
 
-    // random walk every 2 seconds
-    const walk = setInterval(() => {
-
-      const controls = ['forward','back','left','right']
-      const c = controls[Math.floor(Math.random()*controls.length)]
-
-      bot.setControlState(c,true)
-
-      setTimeout(()=>{
-        bot.setControlState(c,false)
-      },1000)
-
-    },2000)
-
-    // leave after 10 minutes
-    setTimeout(()=>{
-      clearInterval(walk)
-      bot.quit()
-    }, STAY_TIME)
-
-  })
-
-  bot.on('end', () => {
-    console.log(bot.username + " reconnecting...")
-    setTimeout(createBot,5000)
-  })
-
-  bot.on('error', err => console.log(err))
-}
-
-for(let i=0;i<BOT_COUNT;i++){
-  setTimeout(createBot, i*500)
-}
 ```
 ---
 
