@@ -3,6 +3,9 @@
 A comprehensive collection of tools for video downloading, Minecraft server automation, and web-based media management.
 
 ---
+# Termux link download 
+
+## https://github.com/termux/termux-app/tags
 
 ## 📋 Project Overview
 
@@ -251,6 +254,54 @@ cloudflared tunnel --url http://localhost:8080
 
 ---
 
+### run.sh (nano run.sh)
+```bash
+#!/data/data/com.termux/files/usr/bin/bash
+
+yes | pkg update
+yes | pkg upgrade
+
+yes | pkg install python ffmpeg git
+yes | pkg install tmux
+yes | pkg install wget
+yes | pkg install unzip
+yes | pkg install iproute2
+yes | pkg install libqrencode
+yes | pkg install cloudflared
+yes | pkg install fish
+yes | pkg install nodejs
+
+pip install flask yt-dlp
+
+npm init -y
+npm install mineflayer
+npm audit fix
+npm audit fix --force
+
+chsh -s fish
+
+echo "✅ Setup Complete!"rc
+
+echo "✅ All done!"
+echo "Test with: yt-dlp --version"
+
+```
+
+---
+
+## chmod +x run.sh
+```bash
+./run.sh
+```
+---
+
+### (Public)
+```bash
+cloudflared tunnel --url http://localhost:8080
+```
+
+---
+
 ## 📝 Notes
 
 - This project is designed for Termux/Android environments
@@ -273,8 +324,8 @@ cloudflared tunnel --url http://localhost:8080
 ## 🇰🇭 ភាសាខ្មែរ
 
 **កម្មវិធីមូលដ្ឋាន:**
-- ទាញយកវីដេអូពីយូធ្វូប, តីកតក, ឥនស្តាក្រាម
-- រត់ម៉ាកបទ Minecraft ដោយស្វ័យប្រវត្ត
+- ទាញយកវីដេអូពី YouTube, Tik tok , Facebook 
+- run bot join server Minecraft ដោយស្វ័យប្រវត្ត
 - ឧបករណ៍ដូចម៉ាក់ក្នុងឡើងលើ
 
 ---
