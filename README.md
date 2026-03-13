@@ -587,6 +587,12 @@ echo "./start.sh"
 ./server.sh
 ```
 ---
+## ដើម្បី run server ម្ដងទៀត
+```bash
+ls
+```
+## ដើម្បី select folder 
+### cd ~/ name folder 
 ## ចំណុចសំខាន់ដែលត្រូវដឹង
 ```bash
 termux-setup-storage
