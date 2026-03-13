@@ -648,10 +648,10 @@ termux-setup-storage
 
 ## 📞 Support
 
-For issues or questions, check:
-1. README.md in repository
-2. Official documentation for dependencies
-3. GitHub issues
+Facebook Hand Slow
+phone number 0883663489
+gmail: chhemsochamroeun@gmail.com 
+       chhemsochamroeu@gmail.com
 
 ---
 
