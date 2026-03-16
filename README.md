@@ -479,7 +479,7 @@ npm install mineflayer
 clear
 echo "===================================="
 echo " Minecraft Paper Server Installer"
-echo " Termux Auto Setup"
+echo " Termux Auto Setup by AI"
 echo "===================================="
 
 sleep 2
