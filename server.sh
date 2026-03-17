@@ -3,7 +3,7 @@
 clear
 echo "===================================="
 echo " Minecraft Paper Server Installer"
-echo " Termux Auto Setup by AI"
+echo " Termux Auto Setup"
 echo "===================================="
 
 sleep 2
@@ -54,13 +54,34 @@ echo "Downloading Paper server..."
 wget $URL -O server.jar
 
 echo ""
-echo "Enter RAM size (MB)"
-echo "Example:"
-echo "1024 = 1GB"
-echo "2048 = 2GB"
-echo "4096 = 4GB"
+echo "Select RAM size"
 
-read RAM
+echo "1) 1GB"
+echo "2) 2GB"
+echo "3) 3GB"
+echo "4) 4GB"
+echo "5) 5GB"
+echo "6) 6GB"
+echo "7) 7GB"
+echo "8) 8GB"
+echo "9) 9GB"
+echo "10) 10GB"
+
+read RAMCHOICE
+
+case $RAMCHOICE in
+1) RAM="1G";;
+2) RAM="2G";;
+3) RAM="3G";;
+4) RAM="4G";;
+5) RAM="5G";;
+6) RAM="6G";;
+7) RAM="7G";;
+8) RAM="8G";;
+9) RAM="9G";;
+10) RAM="10G";;
+*) RAM="2G";;
+esac
 
 echo ""
 echo "Creating start script..."
